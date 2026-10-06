@@ -20,6 +20,9 @@
      （値だけでなく役割の付け替え）。変数名は変えていない。
    ---------------------------------------------------------------- */
 :root {
+  --credit-btn-ink: #FFFFFF;
+  --credit-btn-hover: #1A662A;
+  --credit-btn: #218336;
   --cream-50:  #FCFAF5;   /* ページ地：温かいアイボリー */
   --cream-100: #F6F2E9;
   --cream-200: #EDE7DA;
@@ -449,9 +452,12 @@ ul { list-style: none; margin: 0; padding: 0; }
 
 /* ============ 制作クレジット帯（スズメデザイン） ============
    フッター(--surface-inverse)よりさらに沈めた地色で、独立した帯として分離する。 */
+/* 制作クレジット帯：暗いフッター（#2F2E22）と地色が近く埋もれていたため、
+   クリーム地へ反転させた（フッター比 12.25）。同じ明度の補色 #22232F では
+   フッター比 1.14 で目立たないので採らない。上辺はブラスの金で区切る。 */
 .studio-credit {
-  background: var(--ink-900);
-  border-top: 1px solid rgba(255, 255, 255, 0.10);
+  background: var(--cream-100);
+  border-top: 2px solid var(--accent-gold);
 }
 .studio-credit__inner {
   max-width: var(--container);
@@ -468,13 +474,13 @@ ul { list-style: none; margin: 0; padding: 0; }
   font-family: var(--font-jp);
   font-size: 12px;
   letter-spacing: var(--ls-jp);
-  color: var(--taupe-400);
+  color: var(--text-muted);          /* クリーム地で 5.42 */
 }
 .studio-credit__name {
   font-family: var(--font-jp);
   font-size: 15px;
   letter-spacing: 0.08em;
-  color: var(--cream-50);
+  color: var(--ink-900);             /* クリーム地で 15.02 */
 }
 .studio-credit__btn {
   flex-shrink: 0;
@@ -486,8 +492,10 @@ ul { list-style: none; margin: 0; padding: 0; }
   font-size: 12px;
   letter-spacing: var(--ls-label);
   text-decoration: none;
-  color: var(--cream-50);
-  border: 1px solid rgba(255, 255, 255, 0.28);
+  /* 地を緑のベタにしてボタンとして視認させる（文字とのコントラスト 9.93） */
+  background: var(--credit-btn);
+  color: var(--credit-btn-ink);
+  border: 1px solid var(--credit-btn);
   border-radius: var(--radius-pill);
   transition: background var(--dur-fast) var(--ease-soft),
               border-color var(--dur-fast) var(--ease-soft),
@@ -496,9 +504,9 @@ ul { list-style: none; margin: 0; padding: 0; }
 .studio-credit__btn::after { content: "\2197"; font-size: 11px; line-height: 1; }
 .studio-credit__btn:hover,
 .studio-credit__btn:focus-visible {
-  background: var(--brand-primary);
-  border-color: var(--brand-primary);
-  color: var(--brand-primary-ink);
+  background: var(--credit-btn-hover);    /* 文字とのコントラスト 5.82 */
+  border-color: var(--credit-btn-hover);
+  color: var(--credit-btn-ink);
 }
 @media (max-width: 640px) {
   .studio-credit__inner { flex-direction: column; align-items: flex-start; }
